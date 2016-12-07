@@ -11,6 +11,16 @@
 // BasePort + 2 => Error port. Receive errros from device.
 // BasePort + 3 => Data port. Receive data from device.
 
+// UNCOMMENT BELOW IF RUNNING FROM BOOT
+// function wait(ms){
+//    var start = new Date().getTime();
+//    var end = start;
+//    while(end < start + ms) {
+//      end = new Date().getTime();
+//   }
+// }
+// wait(60000);
+
 var creator_ip = '127.0.0.1'
 var creator_humidity_base_port = 20013 + 4 // port for Humidity driver.
 var creator_pressure_base_port = 20013 + (4 * 3) // port for Pressure driver.
@@ -25,7 +35,7 @@ var IS = require('initial-state');
 var bucket = IS.bucket('Matrix Sensor Readings', 'Your_Access_Key_Here');
 
 // Parse proto file
-var protoBuilder = protoBuf.loadProtoFile('../../protocol-buffers/malos/driver.proto')
+var protoBuilder = protoBuf.loadProtoFile('/home/pi/matrix-creator-malos/protocol-buffers/malos/driver.proto')
 // Parse matrix_malos package (namespace).
 var matrixMalosBuilder = protoBuilder.build("matrix_malos")
 
